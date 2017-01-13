@@ -20,6 +20,7 @@
 
 //System Libraries Here
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 //User Libraries Here
@@ -33,14 +34,38 @@ using namespace std;
 int main(int argc, char** argv) {
     
     //Declare all Variables Here
+    //string holds the movie name. adTckts and chTckts hold the number of
+    //adult and child tickets sold. gProfit and nProfit hold the gross and net
+    //profit. payDist is what is owed to the distributor.
+    string movie;
+    int adTckts, chTckts;
+    float gProfit, nProfit, payDist;
     
     //Input or initialize values Here
+    cout<<"This program generates a report on a particular movie's "<<endl;
+    cout<<"profitability."<<endl;
+    cout<<"Enter the name of the movie: ";
+    getline(cin,movie);
+    cout<<endl<<"Enter the number of adult tickets sold: ";
+    cin>>adTckts;
+    cout<<endl<<"Enter the number of child tickets sold: ";
+    cin>>chTckts;
+    cout<<endl;
     
     //Process/Calculations Here
+    gProfit = (10*adTckts)+(6*chTckts);
+    nProfit = gProfit*.2;
+    payDist = gProfit - nProfit;
     
     //Output Located Here
-    cout<<"Hello World"<<endl;
-
+    cout<<setprecision(2)<<showpoint<<fixed;
+    cout<<"Movie Name:                  "<<setw(10)<<"\""<<movie<<"\""<<endl;
+    cout<<"Adult Tickets Sold:          "<<setw(10)<<adTckts<<endl;
+    cout<<"Child Tickets Sold:          "<<setw(10)<<chTckts<<endl;
+    cout<<"Gross Box Office Profit:     "<<setw(10)<<"$"<<gProfit<<endl;
+    cout<<"Net Box Office Profit:       "<<setw(10)<<"$"<<nProfit<<endl;
+    cout<<"Amount Paid to Distributor:  "<<setw(10)<<"$"<<payDist<<endl;
+    
     //Exit
     return 0;
 }
