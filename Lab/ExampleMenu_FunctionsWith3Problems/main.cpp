@@ -1,0 +1,146 @@
+/* 
+ * File:   main.cpp
+ * Author: Jamil Batshoun
+ * Created on January 19, 2017, 12:29 PM
+ * Purpose: 
+ */
+
+//System Libraries
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+using namespace std;
+
+//Function Prototypes
+void prob1();
+void prob2();
+void prob3();
+
+//Executable code begins here!!!
+int main(int argc, char** argv) {
+    
+    //Declare Variables
+    char choice;
+    
+    //Input values
+    do{
+        
+        cout<<"Choose from the list"<<endl;
+        cout<<"Type 1 for Problem with Do-While"<<endl;
+        cout<<"Type 2 for Problem with While"<<endl;
+        cout<<"Type 3 for Problem with For"<<endl;
+        cin>>choice;
+
+        //Switch to determine the problem
+        switch(choice){
+            case'1':{prob1();break;}
+            case'2':{prob2();break;}
+            case'3':{prob3();break;}
+            default:
+                cout<<"You are exiting the program."<<endl;
+        }
+        
+    //Output values
+    }while(choice >='1'&& choice <= '3');
+    //Exit stage right!
+    return 0;
+}
+
+void prob1(){
+//Set the random number seed
+                srand(static_cast<unsigned int>(time(0)));
+
+                //Declare and Initialize local Variables to main
+                char numStd=20,student=1;
+                unsigned short average=0;
+
+                //Input values
+                cout<<"This program assigns the score and outputs the grade for "
+                        <<static_cast<int>(numStd)<<" students"<<endl;
+
+                //Loop for each student
+                do{
+                    //Assign a grade and add to the average
+                    //score and grade are local to the while loop
+                    unsigned short score=rand()%50+50;
+                    average+=score;
+                    //Process by mapping inputs to outputs
+                    char grade=(score>=90)?'A':
+                          (score>=80)?'B':
+                          (score>=70)?'C':
+                          (score>=60)?'D':'F';
+
+                    //Output values
+                    cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                            <<" has score "<<score<<" = "<<grade<<endl;
+                }while(++student<=numStd);
+
+                //Calculate and output the average
+                average/=numStd;
+                cout<<"The average test score = "<<average<<endl;
+}
+
+void prob2(){
+srand(static_cast<unsigned int>(time(0)));
+                //Declare and Initialize local Variables to main
+                char numStd=20,student=0;
+                unsigned short average=0;
+
+                //Input values
+                cout<<"This program assigns the score and outputs the grade for "
+                        <<static_cast<int>(numStd)<<" students"<<endl;
+
+                //Loop for each student
+                while(++student<=numStd){
+                    //Assign a grade and add to the average
+                    //score and grade are local to the while loop
+                    unsigned short score=rand()%50+50;
+                    average+=score;
+                    //Process by mapping inputs to outputs
+                    char grade=(score>=90)?'A':
+                          (score>=80)?'B':
+                          (score>=70)?'C':
+                          (score>=60)?'D':'F';
+
+                    //Output values
+                    cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                            <<" has score "<<score<<" = "<<grade<<endl;
+                }
+
+                //Calculate and output the average
+                average/=numStd;
+                cout<<"The average test score = "<<average<<endl;
+}
+
+void prob3(){
+srand(static_cast<unsigned int>(time(0)));
+                //Declare and Initialize local Variables to main
+                char numStd=20;
+                unsigned short average=0;
+
+                //Input values
+                cout<<"This program assigns the score and outputs the grade for "
+                        <<static_cast<int>(numStd)<<" students"<<endl;
+
+                //Loop for each student
+                for(char student=1;student<=numStd;student++){
+                    //Assign a grade and add to the average
+                    //score and grade are local to the while loop
+                    unsigned short score=rand()%50+50;//Score from 50 to 99
+                    average+=score;
+                    //Process by mapping inputs to outputs
+                    char grade=(score>=90)?'A':
+                          (score>=80)?'B':
+                          (score>=70)?'C':
+                          (score>=60)?'D':'F';
+
+                    //Output values
+                    cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                            <<" has score "<<score<<" = "<<grade<<endl;
+                }
+
+                //Calculate and output the average
+                average/=numStd;
+                cout<<"The average test score = "<<average<<endl;
+}
