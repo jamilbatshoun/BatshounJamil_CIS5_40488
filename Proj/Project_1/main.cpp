@@ -51,30 +51,7 @@ int main(int argc, char** argv) {
     cout<<"House score = "<<setw(2)<<crdval3 +crdval4<<endl;
     int temp1, temp2, temp3, temp4;
     do{
-        
-        const int MIN_VALUE = 1;
-        const int MAX_VALUE = 10;
-        //each do-while and for-loop correspond to one card for four cards total
-        //each time the program runs four different cards are chosen
-        rand1 = (rand() %(MAX_VALUE -MIN_VALUE +1)) +MIN_VALUE;
-        for(int count1 = 1; count1 <= rand1; count1++){
-            inputFile>>crdint1;
-        }
-        
-        rand2 = (rand() %(MAX_VALUE -MIN_VALUE +1)) +MIN_VALUE;
-        for(int count2 = 1; count2 <= rand2; count2++){
-            inputFile>>crdint2;
-        }
-        rand3 = (rand() %(MAX_VALUE -MIN_VALUE +1)) +MIN_VALUE;
-        for(int count3 = 1; count3 <= rand3; count3++){
-            inputFile>>crdint3;
-        }
-        rand4 = (rand() %(MAX_VALUE -MIN_VALUE +1)) +MIN_VALUE;
-        for(int count4 = 1; count4 <= rand4; count4++){
-            inputFile>>crdint4;
-        }
-        
-        //reversing values read from file
+      
         switch(crdint1){
             case 9: crdval1 = 0;break;
             case 8: crdval1 = 1;break;
