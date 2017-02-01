@@ -1,4 +1,3 @@
-
 /* 
  * File:   main.cpp
  * Author: Jamil Batshoun
@@ -23,9 +22,11 @@ int main(int argc, char** argv) {
     char again;
     //for is number of times for-loops are executed
     int for1, for2, for3, for4;
-    //hold is the score of one card, score is 
+    //hold is the score of one card, yrScore is player score. hsScore is house's
     int hold1, hold2, hold3, hold4, yrScore, hsScore;
-    float wins, avg, nGames = 0;
+    float nWins, avg, nGames = 0;
+    bool didWin;
+   
     const int MIN = 1;
     const int MAX = 10;
     string fileNme = "Cards.dat";
@@ -47,11 +48,13 @@ int main(int argc, char** argv) {
         //files are then reopened so as to start from beginning of the file
         inpFile.open(fileNme);
         
-        //random number of lines to beread from file. last line determines hold1
-        //value
+        //random number of lines to be read from file. last line determines 
+        //hold1 value
         for(int count = 1; count < for1; count++){
             inpFile>>hold1;
         }
+        //hold1 is sent to switch function to merely change its value
+        //switch function does not affect the outcome in a meaningful way
         hold1 = switchr(hold1);
         
         //process is repeated for hold2
@@ -78,6 +81,7 @@ int main(int argc, char** argv) {
         }
         hold4 = switchr(hold4);
         
+        //player and house receive two numbers each. final scores are calculated
         //in baccarat, if a score is > 9 subtract 10
         yrScore = hold1 +hold2;
         hsScore = hold3 +hold4;
@@ -87,18 +91,40 @@ int main(int argc, char** argv) {
             hsScore -=10;
         
         cout<<" ***Your cards***\t\t***The House's cards***"<<endl;
-        cout<<"       "<<hold1<<"  "<<hold2<<"\t\t\t\t  "<<hold3<<"  "<<hold4<<endl;
+        cout<<"       "<<hold1<<"  "<<hold2<<"\t\t\t\t  "<<hold3<<"  "
+            <<hold4<<endl;
         cout<<" ***Your score***\t\t***The House Score***"<<endl;
         cout<<"        "<<yrScore<<"\t\t\t\t   "<<hsScore<<endl;
-        if(yrScore > hsScore){
-            cout<<"You win!"<<endl;
-            wins++;
-        }
-        nGames++;
         
-        avg = (wins /nGames) *100;
+        //if player wins it is recorded with nWins
+        if(yrScore > hsScore){
+            nWins++;
+            //if didWin is still true and there is no tie, player wins
+            if(didWin && yrScore == hsScore)
+                cout<<"You won!"<<endl;
+            //if did win is true but player did not have the higher score then
+            //a tie is declared
+            else
+                cout<<"Tie."<<endl;
+        }
+        //if house had a higher score didWin is set to false
+        else if(hsScore > yrScore){
+            didWin = false;
+            //if house won player is told they lost
+            while(didWin == false){
+                cout<<"You lost."<<endl;
+                didWin = true;
+            }
+                
+        }
+        
+        //nGames records the number of total games played
+        nGames++;
+        //avg is chance of winning the next game. accuracy improves over
+        //time (more playing = more accuracy)
+        avg = (nWins /nGames) *100;
         cout<<fixed<<setprecision(2)<<showpoint;
-        cout<<"Odds of winning = "<<avg<<"%"<<endl;
+        cout<<"Odds of winning = "<<avg<<"%"<<endl<<endl;
         cout<<"Play again? Press y to play again. Press any other key to exit: ";
         cin>>again;
         cout<<endl;
