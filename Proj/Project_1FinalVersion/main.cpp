@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <cmath>
 #include <fstream>
 #include <string>
 #include <ctime>
@@ -97,23 +96,22 @@ int main(int argc, char** argv) {
         cout<<" ***Your score***\t\t***The House's Score***"<<endl;
         cout<<"        "<<yrScore<<"\t\t\t\t   "<<hsScore<<endl;
         
-        if(yrScore < hsScore){
-            didWin = false;
-        }
-        else
-            didWin = true;
+        //conditional operator
+        didWin = yrScore > hsScore?true:false;
+        
         //if player wins it is recorded with nWins
-        if(didWin == true && yrScore != hsScore){
+        if(didWin == true){
             nWins++;
-            cout<<"You won!"<<endl;
+            if(yrScore != hsScore){
+                cout<<"You won!"<<endl;
+            //if a tie scenario occurs
+            }else if(yrScore == hsScore){
+                cout<<"Tie."<<endl;
+            }
         }
         else if(!didWin && yrScore != hsScore){
             //if house won player is told they lost
             cout<<"You lost."<<endl;   
-        }
-        //if a tie scenario occurs
-        else if(didWin == true && yrScore == hsScore){
-            cout<<"Tie."<<endl;
         }
         
         //nGames records the number of total games played
