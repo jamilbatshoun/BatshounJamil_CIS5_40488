@@ -42,9 +42,6 @@ int main(int argc, char** argv) {
         for3 = rand() %(MAX -MIN +1) +MIN;
         for4 = rand() %(MAX -MIN +1) +MIN;
         
-        //files must be close from last iteration
-        inpFile.close();
-        
         //files are then reopened so as to start from beginning of the file
         inpFile.open(fileNme);
         
@@ -81,6 +78,9 @@ int main(int argc, char** argv) {
         }
         hold4 = switchr(hold4);
         
+        //files must be close from last iteration
+        inpFile.close();
+        
         //player and house receive two numbers each. final scores are calculated
         //in baccarat, if a score is > 9 subtract 10
         yrScore = hold1 +hold2;
@@ -93,23 +93,22 @@ int main(int argc, char** argv) {
         cout<<" ***Your cards***\t\t***The House's cards***"<<endl;
         cout<<"       "<<hold1<<"  "<<hold2<<"\t\t\t\t  "<<hold3<<"  "
             <<hold4<<endl;
-        cout<<" ***Your score***\t\t***The House's Score***"<<endl;
+        cout<<" ***Your score***\t\t***The House's score***"<<endl;
         cout<<"        "<<yrScore<<"\t\t\t\t   "<<hsScore<<endl;
         
         //conditional operator
-        didWin = yrScore > hsScore?true:false;
+        didWin = yrScore >= hsScore?true:false;
         
-        //if player wins it is recorded with nWins
         if(didWin == true){
-            nWins++;
             if(yrScore != hsScore){
                 cout<<"You won!"<<endl;
+                //if player wins it is recorded with nWins
+                nWins++;
             //if a tie scenario occurs
-            }else if(yrScore == hsScore){
+            }else
                 cout<<"Tie."<<endl;
-            }
         }
-        else if(!didWin && yrScore != hsScore){
+        else if(yrScore < hsScore){
             //if house won player is told they lost
             cout<<"You lost."<<endl;   
         }
