@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     //hold is the score of one card, yrScore is player score. hsScore is house's
     int hold1, hold2, hold3, hold4, yrScore, hsScore;
     float nWins, avg, nGames = 0;
-    bool didWin;
+    
    
     const int MIN = 1;
     const int MAX = 10;
@@ -34,8 +34,9 @@ int main(int argc, char** argv) {
     inpFile.open(fileNme);
     
     srand(time(0));
-    
+    cout<<"                     Baccarat"<<endl;
     do{
+        bool didWin;
         //for variables store random numbers
         for1 = rand() %(MAX -MIN +1) +MIN;
         for2 = rand() %(MAX -MIN +1) +MIN;
@@ -93,29 +94,26 @@ int main(int argc, char** argv) {
         cout<<" ***Your cards***\t\t***The House's cards***"<<endl;
         cout<<"       "<<hold1<<"  "<<hold2<<"\t\t\t\t  "<<hold3<<"  "
             <<hold4<<endl;
-        cout<<" ***Your score***\t\t***The House Score***"<<endl;
+        cout<<" ***Your score***\t\t***The House's Score***"<<endl;
         cout<<"        "<<yrScore<<"\t\t\t\t   "<<hsScore<<endl;
         
-        //if player wins it is recorded with nWins
-        if(yrScore > hsScore){
-            nWins++;
-            //if didWin is still true and there is no tie, player wins
-            if(didWin && yrScore == hsScore)
-                cout<<"You won!"<<endl;
-            //if did win is true but player did not have the higher score then
-            //a tie is declared
-            else
-                cout<<"Tie."<<endl;
-        }
-        //if house had a higher score didWin is set to false
-        else if(hsScore > yrScore){
+        if(yrScore < hsScore){
             didWin = false;
+        }
+        else
+            didWin = true;
+        //if player wins it is recorded with nWins
+        if(didWin == true && yrScore != hsScore){
+            nWins++;
+            cout<<"You won!"<<endl;
+        }
+        else if(!didWin && yrScore != hsScore){
             //if house won player is told they lost
-            while(didWin == false){
-                cout<<"You lost."<<endl;
-                didWin = true;
-            }
-                
+            cout<<"You lost."<<endl;   
+        }
+        //if a tie scenario occurs
+        else if(didWin == true && yrScore == hsScore){
+            cout<<"Tie."<<endl;
         }
         
         //nGames records the number of total games played
