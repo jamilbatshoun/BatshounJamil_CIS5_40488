@@ -18,6 +18,7 @@ int switchr(int);
 
 int main(int argc, char** argv) {
     
+    srand(time(0));
     char again;
     //for is number of times for-loops are executed
     int for1, for2, for3, for4;
@@ -32,9 +33,8 @@ int main(int argc, char** argv) {
     ifstream inpFile;
     inpFile.open(fileNme);
     
-    srand(time(0));
-    cout<<"                     Baccarat"<<endl;
     do{
+        cout<<"                     Baccarat"<<endl;
         bool didWin;
         //for variables store random numbers
         for1 = rand() %(MAX -MIN +1) +MIN;
