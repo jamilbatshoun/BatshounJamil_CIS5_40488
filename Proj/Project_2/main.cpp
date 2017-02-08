@@ -11,6 +11,7 @@
 #include <string>
 #include <ctime>
 #include <iomanip>
+#include <cstring>
 
 using namespace std;
 
@@ -25,13 +26,21 @@ int main(int argc, char** argv) {
     //hold is the score of one card, yrScore is player score. hsScore is house's
     int hold1, hold2, hold3, hold4, yrScore, hsScore;
     float nWins, avg, nGames = 0;
+    string array[1][2] = {{"Ace ","Two "}};
     
    
     const int MIN = 1;
     const int MAX = 10;
     string fileNme = "Cards.dat";
+    string filNme2 = "NamesOfCards.dat";
+    ofstream outFile;
+    outFile.open(filNme2);
     ifstream inpFile;
     inpFile.open(fileNme);
+    outFile<<array[0][0]<<endl;
+    outFile<<array[0][1]<<endl;
+    string temp;
+    
     
     do{
         cout<<"                     Baccarat"<<endl;
